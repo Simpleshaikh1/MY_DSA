@@ -34,3 +34,8 @@ function minRemove(arr1, arr2){
 
     return res;
 }
+
+const arr1 = [1, 2, 3, 4];
+const arr2 = [2, 3, 4, 5, 8];
+
+console.log(minRemove(arr1, arr2));
