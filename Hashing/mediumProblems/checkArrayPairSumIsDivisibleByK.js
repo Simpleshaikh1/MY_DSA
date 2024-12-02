@@ -33,6 +33,37 @@ function canPairs(arr, k){
     return (count === n / 2);
 }
 
+
+//Using Hash
+
+function canPairs(arr, k){
+    let n = arr.length;
+    if(n % 2 !== 0) return false;
+
+    const freq = new Map();
+
+    for(let x of arr){
+        const rem = ((x % k) + k) % k;
+        freq.set(rem, (freq.get(rem) || 0) + 1)
+    }
+
+    for(let x of arr){
+        const rem = ((x % k) + k) % k;
+        if(2 * rem === k){
+            if((freq.get(rem) || 0) % 2) return false;
+        }
+
+        else if(rem === 0){
+            if((freq.get(rem) || 0) % 2 !== 0 ) return false;
+        }
+
+        else if((freq.get(rem) || 0) !== (freq.get(k - rem) || 0)){
+            return false;
+        }
+    }
+
+    return true;
+}
 // Driver code
 let arr = [92, 75, 65, 48, 45, 35];
 let k = 10;
