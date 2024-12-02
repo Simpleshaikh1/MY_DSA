@@ -64,6 +64,31 @@ function canPairs(arr, k){
 
     return true;
 }
+
+
+//Efficient approach for small K
+
+function canPairs(arr, k){
+    if(arr.length % 2 !== 0) return false;
+
+    let freq = new Array(k).fill(0);
+
+    for(let x of arr){
+        let rem = x % k;
+
+        if(freq[(k - rem ) % k] !== 0){
+            freq[(k - rem ) % k ]--;
+        }else{
+            freq[rem]++
+        }
+    }
+
+    for(let count of freq){
+        if(count !== 0) return false;
+    }
+
+    return true;
+}
 // Driver code
 let arr = [92, 75, 65, 48, 45, 35];
 let k = 10;
